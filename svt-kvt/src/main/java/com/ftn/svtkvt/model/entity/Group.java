@@ -16,21 +16,21 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
-    String name;
+    private String name;
 
     @Column(nullable = false)
-    String description;
+    private String description;
 
     @Column(nullable = false)
-    LocalDateTime creationDate;
+    private LocalDateTime creationDate;
 
     @Column
-    boolean isSuspended;
+    private boolean isSuspended;
 
     @Column
-    String suspendedReason;
+    private String suspendedReason;
 
 }

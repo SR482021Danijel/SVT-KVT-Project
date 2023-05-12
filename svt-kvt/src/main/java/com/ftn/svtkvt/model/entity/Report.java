@@ -5,21 +5,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Post {
+public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String content;
+    @Column
+    private EReportReason reason;
 
-    @Column(nullable = false)
-    private LocalDateTime creationDate;
+    @Column
+    private LocalDate timeStamp;
+
+//    User byUser;
+
+    @Column
+    private Boolean accepted;
+
+
 }

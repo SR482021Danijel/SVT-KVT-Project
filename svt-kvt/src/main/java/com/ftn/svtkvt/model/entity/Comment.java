@@ -5,21 +5,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Post {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String content;
+    @Column
+    private String text;
 
-    @Column(nullable = false)
-    private LocalDateTime creationDate;
+    @Column
+    private LocalDate timeStamp;
+
+    @Column
+    private Boolean isDeleted;
 }

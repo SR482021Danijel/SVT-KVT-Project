@@ -11,15 +11,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Post {
+public class FriendRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String content;
+    @Column
+    private Boolean approved;
 
-    @Column(nullable = false)
-    private LocalDateTime creationDate;
+    @Column
+    private LocalDateTime created_at;
+
+    @Column
+    private LocalDateTime at;
 }

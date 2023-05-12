@@ -1,6 +1,6 @@
 package com.ftn.svtkvt.model.entity;
 
-public enum ReportReason {
+public enum EReportReason {
     BREAKES_RULES,
     HARASSMENT,
     HATE,
