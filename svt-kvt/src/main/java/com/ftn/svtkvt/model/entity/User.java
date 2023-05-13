@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -36,4 +38,10 @@ public class User {
 
     @Column(nullable = false)
     private String lastName;
+
+    @ManyToMany
+    @JoinTable(name = "friendsWith", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "id"))
+    private Set<User> friends = new HashSet<User>();
+
 }

@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -32,5 +34,10 @@ public class Group {
 
     @Column
     private String suspendedReason;
+
+    @OneToMany
+    @JoinTable(name = "contains", joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"))
+    private Set<Post> posts = new HashSet<Post>();
 
 }

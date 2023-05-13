@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.naming.Name;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -25,4 +26,12 @@ public class GroupRequest {
 
     @Column
     private LocalDateTime at;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 }

@@ -18,4 +18,12 @@ public class Image {
 
     @Column
     private String path;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

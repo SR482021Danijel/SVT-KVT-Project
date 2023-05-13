@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -22,4 +24,11 @@ public class Post {
 
     @Column(nullable = false)
     private LocalDateTime creationDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User poster;
+
+    @OneToMany(mappedBy = "post")
+    private Set<Image> images = new HashSet<>();
 }

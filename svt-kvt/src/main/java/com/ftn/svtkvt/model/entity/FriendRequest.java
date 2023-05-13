@@ -25,4 +25,12 @@ public class FriendRequest {
 
     @Column
     private LocalDateTime at;
+
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    private User sender;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    private User receiver;
 }
