@@ -29,17 +29,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(UserDTO userDTO) {
+    public User createUser(User createdUser) {
 
-        Optional<User> user = userRepository.findFirstByUsername(userDTO.getUsername());
+        Optional<User> user = userRepository.findFirstByUsername(createdUser.getUsername());
 
         if(user.isPresent()){
             return null;
         }
 
         User newUser = new User();
-        newUser.setUsername(userDTO.getUsername());
-        newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        newUser.setUsername(createdUser.getUsername());
+        newUser.setPassword(passwordEncoder.encode(createdUser.getPassword()));
+        newUser.setEmail(createdUser.getEmail());
+        newUser.setFirstName(createdUser.getFirstName());
+        newUser.setLastName(createdUser.getLastName());
         newUser = userRepository.save(newUser);
 
         return newUser;

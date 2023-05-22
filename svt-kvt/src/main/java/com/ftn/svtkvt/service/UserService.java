@@ -7,5 +7,5 @@ public interface UserService {
 
     User findByUsername(String username);
 
-    User createUser(UserDTO userDTO);
+    User createUser(User user);
 }

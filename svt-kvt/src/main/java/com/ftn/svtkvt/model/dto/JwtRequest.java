@@ -1,6 +1,5 @@
 package com.ftn.svtkvt.model.dto;
 
-import com.ftn.svtkvt.model.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,18 +10,12 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDTO {
-
-    private Long id;
+@AllArgsConstructor
+public class JwtRequest {
 
     @NotBlank
     private String username;
 
     @NotBlank
     private String password;
-
-    public UserDTO(User createdUser) {
-        this.id = createdUser.getId();
-        this.username = createdUser.getUsername();
-    }
 }
