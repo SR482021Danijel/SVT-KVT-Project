@@ -26,15 +26,14 @@ export class RegisterComponent {
   }
 
   submit() {
-    this.authService.register(this.form.value).subscribe(
-      (result) => {
-        console.log('Usepsno');
+    this.authService.register(this.form.value).subscribe({
+      next: (data) => {
+        console.log('Register success');
         this.router.navigate(['login']);
       },
-      (error) => {
-        console.log(error.error);
-        // this.toastr.error(error.error);
-      }
-    );
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

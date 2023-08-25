@@ -24,16 +24,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   submit() {
-    this.authService.login(this.form.value).subscribe(
-      (result) => {
-        // this.toastr.success('Successful login!');
-        // localStorage.setItem('user', JSON.stringify(result));
+    this.authService.login(this.form.value).subscribe({
+      next: (data) => {
+        console.log('Login success');
+        localStorage.setItem('jwt', JSON.stringify(data));
         this.router.navigate(['home']);
       },
-      (error) => {
-        console.log(error.error);
-        // this.toastr.error(error.error);
-      }
-    );
+      error: (err) => console.log(err),
+    });
   }
 }

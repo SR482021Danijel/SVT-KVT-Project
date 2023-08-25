@@ -9,24 +9,14 @@ import { Observable, map } from 'rxjs';
 export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  private access_token = null;
-
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   login(user: any) {
-    return this.http
-      .post(
-        '/api/users/login',
-        { username: user.username, password: user.password },
-        { headers: this.headers, responseType: 'json' }
-      )
-      .pipe(
-        map((res: any) => {
-          console.log('Login success');
-          this.access_token = res.accessToken;
-          localStorage.setItem('jwt', res.accessToken);
-        })
-      );
+    return this.http.post(
+      '/api/users/login',
+      { username: user.username, password: user.password },
+      { headers: this.headers, responseType: 'json' }
+    );
   }
 
   register(user: any): Observable<any> {
@@ -44,15 +34,7 @@ export class AuthService {
   }
 
   logout() {
-    this.access_token = null;
+    localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
-  }
-
-  tokenIsPresent() {
-    return this.access_token != undefined && this.access_token != null;
-  }
-
-  getToken() {
-    return this.access_token;
   }
 }

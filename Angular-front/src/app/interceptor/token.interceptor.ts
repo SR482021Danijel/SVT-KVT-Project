@@ -13,17 +13,20 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) {}
 
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.auth.tokenIsPresent()) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.auth.getToken()}`,
-        },
-      });
-    }
+    const item = localStorage.getItem('user');
 
-    return next.handle(request);
+    if (item) {
+      const decodedItem = JSON.parse(item);
+      const cloned = req.clone({
+        headers: req.headers.set('X-Auth-Token', decodedItem.token),
+      });
+
+      return next.handle(cloned);
+    } else {
+      return next.handle(req);
+    }
   }
 }

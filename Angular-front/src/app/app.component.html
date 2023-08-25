@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<div *ngIf="isLoggedIn">
+  <app-header></app-header>
+</div>
+<router-outlet (activate)="checkLoggin()"></router-outlet>

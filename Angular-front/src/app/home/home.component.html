@@ -1,2 +1,56 @@
-<app-header></app-header>
-<p>home works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="mb-3">
+        <button type="button" class="btn btn-primary">Make Post</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              ...
+            </button>
+            <ul class="dropdown-menu">
+              <li>Edit Post</li>
+              <li>Delete Post</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-body">
+          <h6 class="card-subtitle text-body-secondary">User Name</h6>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a
+            rutrum libero. Aenean imperdiet sem tortor, tempus auctor est varius
+            a. Curabitur a mauris at nisi efficitur ultricies ut molestie est.
+            Proin id nunc elit.
+          </p>
+
+          <div class="d-flex justify-content-end">
+            <label>
+              <input type="radio" name="react" id="reactHeart" value="heart" />
+              <img src="assets/heart3.png" alt="option1" />
+            </label>
+            <label>
+              <input type="radio" name="react" id="reactLike" value="like" />
+              <img src="assets/like.png" alt="option2" />
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="react"
+                id="reactDisLike"
+                value="DisLike"
+              />
+              <img src="assets/dislike.png" alt="option3" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
