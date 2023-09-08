@@ -11,6 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { PostAddComponent } from './posts/post-add/post-add.component';
+import { GroupComponent } from './groups/group/group.component';
+import { GroupListComponent } from './groups/group-list/group-list.component';
+import { GroupAddComponent } from './groups/group-add/group-add.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     HeaderComponent,
     RegisterComponent,
     HomeComponent,
+    PostAddComponent,
+    GroupComponent,
+    GroupListComponent,
+    GroupAddComponent,
   ],
   imports: [
     BrowserModule,

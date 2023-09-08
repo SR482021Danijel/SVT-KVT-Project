@@ -2,12 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-6">
       <div class="mb-3">
-        <button type="button" class="btn btn-primary">Make Post</button>
+        <button type="button" class="btn btn-primary" (click)="addPost()">
+          Create Post
+        </button>
       </div>
 
-      <div class="card">
+      <div class="card mb-3" *ngFor="let post of posts; let i = index">
         <div class="card-header">
-          <div class="dropdown">
+          <div class="dropdown" *ngIf="username === post.username">
             <button
               class="btn btn-secondary dropdown-toggle"
               type="button"
@@ -16,35 +18,71 @@
               ...
             </button>
             <ul class="dropdown-menu">
-              <li>Edit Post</li>
-              <li>Delete Post</li>
+              <li><a class="dropdown-item" routerLink="">Edit Post</a></li>
+              <li>
+                <button class="dropdown-item" (click)="deletePost(post.id)">
+                  Delete Post
+                </button>
+              </li>
             </ul>
           </div>
         </div>
         <div class="card-body">
-          <h6 class="card-subtitle text-body-secondary">User Name</h6>
+          <h6 class="card-subtitle text-body-secondary">
+            {{ post.username }}
+          </h6>
           <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a
-            rutrum libero. Aenean imperdiet sem tortor, tempus auctor est varius
-            a. Curabitur a mauris at nisi efficitur ultricies ut molestie est.
-            Proin id nunc elit.
+            {{ post.content }}
           </p>
 
           <div class="d-flex justify-content-end">
-            <label>
-              <input type="radio" name="react" id="reactHeart" value="heart" />
-              <img src="assets/heart3.png" alt="option1" />
-            </label>
-            <label>
-              <input type="radio" name="react" id="reactLike" value="like" />
-              <img src="assets/like.png" alt="option2" />
-            </label>
+            <a routerLink="" class="btn btn-primary me-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chat-left-text-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"
+                />
+              </svg>
+            </a>
+            <label [for]="'h' + i" [innerText]="post.heartCount">0</label>
             <label>
               <input
                 type="radio"
-                name="react"
-                id="reactDisLike"
-                value="DisLike"
+                [name]="i + 1"
+                [id]="'h' + i"
+                [value]="reactType.HEART"
+                (change)="onReact($event, post)"
+                [checked]="post.checked == reactType.HEART"
+              />
+              <img src="assets/heart3.png" alt="option1" />
+            </label>
+            <label [for]="'l' + i" [innerText]="post.likeCount">0</label>
+            <label>
+              <input
+                type="radio"
+                [name]="i + 1"
+                [id]="'l' + i"
+                [value]="reactType.LIKE"
+                (change)="onReact($event, post)"
+                [checked]="post.checked == reactType.LIKE"
+              />
+              <img src="assets/like.png" alt="option2" />
+            </label>
+            <label [for]="'d' + i" [innerText]="post.dislikeCount">0</label>
+            <label>
+              <input
+                type="radio"
+                [name]="i + 1"
+                [id]="'d' + i"
+                [value]="reactType.DISLIKE"
+                (change)="onReact($event, post)"
+                [checked]="post.checked == reactType.DISLIKE"
               />
               <img src="assets/dislike.png" alt="option3" />
             </label>

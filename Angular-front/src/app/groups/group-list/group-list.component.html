@@ -1,0 +1,31 @@
+<div class="container">
+  <a routerLink="/group/add" class="btn btn-primary mb-3">Create Group</a>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2 class="mb-3">Joined Groups:</h2>
+      <div class="card" *ngFor="let joined of joinedGroups; let i = index">
+        <div class="card-body">
+          <h3 class="card-title">{{ joined.name }}</h3>
+          <p class="card-text">{{ joined.description }}</p>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary">View group</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h2 class="mb-3">All Groups:</h2>
+      <ul class="list-group list-group-flush">
+        <div class="card" *ngFor="let group of groups; let i = index">
+          <div class="card-body">
+            <h3 class="card-title">{{ group.name }}</h3>
+            <p class="card-text">{{ group.description }}</p>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary">Join group</button>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>

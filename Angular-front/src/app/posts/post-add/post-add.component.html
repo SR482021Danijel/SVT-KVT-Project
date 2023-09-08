@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center mt-5">
+  <form class="w-50" [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset>
+      <legend>Create Post</legend>
+      <label for="postContent" class="form-label">Content:</label>
+      <textarea
+        class="form-control"
+        id="postContent"
+        rows="3"
+        formControlName="content"
+      ></textarea>
+      <button
+        type="submit"
+        class="btn btn-primary mt-4"
+        [disabled]="!form.valid"
+      >
+        Post
+      </button>
+    </fieldset>
+  </form>
+</div>

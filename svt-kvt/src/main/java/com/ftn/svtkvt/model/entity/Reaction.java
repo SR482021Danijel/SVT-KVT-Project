@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -18,8 +21,18 @@ public class Reaction {
     private Long id;
 
     @Column
+    @Enumerated(EnumType.ORDINAL)
     private EReactionType type;
 
     @Column
-    private LocalDate timeStamp;
+    private LocalDateTime timeStamp;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User poster;
+
+    @ManyToMany
+    @JoinTable(name = "reactedTo", joinColumns = @JoinColumn(name = "reaction_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"))
+    private Set<Post> posts = new HashSet<Post>();
 }
