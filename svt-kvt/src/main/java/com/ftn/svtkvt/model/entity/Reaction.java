@@ -32,7 +32,12 @@ public class Reaction {
     private User poster;
 
     @ManyToMany
-    @JoinTable(name = "reactedTo", joinColumns = @JoinColumn(name = "reaction_id", referencedColumnName = "id"),
+    @JoinTable(name = "reactedToPost", joinColumns = @JoinColumn(name = "reaction_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"))
     private Set<Post> posts = new HashSet<Post>();
+
+    @ManyToMany
+    @JoinTable(name = "reactedToComment", joinColumns = @JoinColumn(name = "reaction_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id"))
+    private Set<Comment> comments = new HashSet<>();
 }

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "comments")
 public class Comment {
 
     @Id
@@ -26,4 +27,12 @@ public class Comment {
 
     @Column
     private Boolean isDeleted;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 }

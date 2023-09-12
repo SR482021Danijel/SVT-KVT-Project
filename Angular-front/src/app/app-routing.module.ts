@@ -6,6 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { PostAddComponent } from './posts/post-add/post-add.component';
 import { GroupListComponent } from './groups/group-list/group-list.component';
 import { GroupAddComponent } from './groups/group-add/group-add.component';
+import { PostComponent } from './posts/post/post.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -25,12 +28,24 @@ const routes: Routes = [
     component: PostAddComponent,
   },
   {
+    path: 'post/:id',
+    component: PostComponent,
+  },
+  {
     path: 'group',
     component: GroupListComponent,
   },
   {
     path: 'group/add',
     component: GroupAddComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'profile/edit',
+    component: EditProfileComponent,
   },
   {
     path: '',

@@ -15,6 +15,9 @@ import { PostAddComponent } from './posts/post-add/post-add.component';
 import { GroupComponent } from './groups/group/group.component';
 import { GroupListComponent } from './groups/group-list/group-list.component';
 import { GroupAddComponent } from './groups/group-add/group-add.component';
+import { PostComponent } from './posts/post/post.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { GroupAddComponent } from './groups/group-add/group-add.component';
     GroupComponent,
     GroupListComponent,
     GroupAddComponent,
+    PostComponent,
+    ProfileComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

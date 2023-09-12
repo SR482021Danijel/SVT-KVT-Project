@@ -1,5 +1,6 @@
 package com.ftn.svtkvt.model.dto;
 
+import com.ftn.svtkvt.model.entity.Comment;
 import com.ftn.svtkvt.model.entity.EReactionType;
 import com.ftn.svtkvt.model.entity.Post;
 import com.ftn.svtkvt.model.entity.Reaction;
@@ -20,6 +21,8 @@ public class ReactDTO {
     private LocalDateTime timeStamp;
 
     private Post post;
+
+    private Comment comment;
 
     private String username;
 

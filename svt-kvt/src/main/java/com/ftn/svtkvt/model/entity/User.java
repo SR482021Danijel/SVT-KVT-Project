@@ -39,9 +39,15 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-    @ManyToMany
-    @JoinTable(name = "friendsWith", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "id"))
-    private Set<User> friends = new HashSet<User>();
+    @Column
+    private String displayName;
+
+    @Column
+    private String description;
+
+//    @ManyToMany
+//    @JoinTable(name = "friendsWith", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "id"))
+//    private Set<User> friends = new HashSet<User>();
 
 }

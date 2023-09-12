@@ -26,7 +26,7 @@ export class PostAddComponent {
 
     this.postService.add(this.form.value, creationDate).subscribe({
       next: (data) => {
-        console.log(data);
+        // console.log(data);
         this.router.navigate(['home']);
       },
       error: (err) => {

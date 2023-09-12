@@ -64,14 +64,18 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/users/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users/profile").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/users/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/posts/add").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/posts/getAll").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/posts/getAll").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/posts/post/{id}").access("@webSecurity.checkPostId(#id)")
                 .antMatchers(HttpMethod.PUT, "/api/posts/changeReaction").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/groups/add").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/groups/getAll").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/groups/delete").permitAll()
-
+                .antMatchers(HttpMethod.DELETE, "/api/groups/delete").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/comments/add").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/comments/comment/{id}").access("@webSecurity.checkPostId(#id)")
+                .antMatchers(HttpMethod.PUT, "/api/comments/changeCommentReaction").authenticated()
                 .anyRequest().authenticated().and().cors().and()
 
                 .addFilterBefore(new AuthenticationTokenFilter(userDetailsService(), tokenUtils), BasicAuthenticationFilter.class);

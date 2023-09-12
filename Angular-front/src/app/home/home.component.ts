@@ -4,7 +4,6 @@ import { Post } from '../posts/post-model';
 import { PostService } from '../posts/post.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ReactType } from '../posts/react-type';
-import { Reaction } from '../posts/reaction-model';
 
 @Component({
   selector: 'app-home',

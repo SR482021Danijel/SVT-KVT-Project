@@ -16,10 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/users")
@@ -38,7 +35,7 @@ public class UserController {
     UserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public ResponseEntity<UserTokenState> login(@RequestBody JwtRequest jwtRequest){
+    public ResponseEntity<UserTokenState> login(@RequestBody JwtRequest jwtRequest) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 jwtRequest.getUsername(), jwtRequest.getPassword()));
@@ -50,17 +47,33 @@ public class UserController {
 
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
     }
+
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> register(@RequestBody @Validated User user){
+    public ResponseEntity<UserDTO> register(@RequestBody @Validated User user) {
 
         User created = userService.createUser(user);
 
-        if(created == null){
+        if (created == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         }
 
         UserDTO userDTO = new UserDTO(created);
 
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity getUser() {
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User user = userService.findByUsername(userDetails.getUsername());
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity editUser() {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

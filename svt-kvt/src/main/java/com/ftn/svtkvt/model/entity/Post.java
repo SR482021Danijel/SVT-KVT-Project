@@ -29,6 +29,6 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User poster;
 
-    @OneToMany(mappedBy = "post")
-    private Set<Image> images = new HashSet<>();
+//    @OneToMany(mappedBy = "post")
+//    private Set<Image> images = new HashSet<>();
 }

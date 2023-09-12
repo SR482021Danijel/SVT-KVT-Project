@@ -10,6 +10,8 @@ public interface PostService {
 
     Post findByUser(String username);
 
+    Post findById(Long id);
+
     List<Post> findAll();
     Post createPost(String content, LocalDateTime date, User user);
 

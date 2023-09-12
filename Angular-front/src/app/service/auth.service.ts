@@ -37,4 +37,8 @@ export class AuthService {
     localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
   }
+
+  getUser(): Observable<any> {
+    return this.http.get('api/users/profile');
+  }
 }

@@ -29,7 +29,9 @@ export class PostService {
     );
   }
 
-  getById() {}
+  getById(id: any): Observable<any> {
+    return this.http.get('api/posts/post/' + id);
+  }
 
   getAll(username: string): Observable<any> {
     return this.http.post('api/posts/getAll', { username });

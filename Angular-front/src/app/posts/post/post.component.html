@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-9">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-subtitle text-body-secondary mb-2">
+            {{ post.username }}
+          </h6>
+          <p class="card-text fs-3">{{ post.content }}</p>
+          <div class="d-flex justify-content-end">
+            <label for="heart" [innerText]="post.heartCount">0</label>
+            <label>
+              <input
+                type="radio"
+                name="radio"
+                id="heart"
+                [value]="reactType.HEART"
+                (change)="onReact($event, post)"
+                [checked]="post.checked == reactType.HEART"
+              />
+              <img src="assets/heart3.png" alt="option1" />
+            </label>
+
+            <label for="like" [innerText]="post.likeCount">0</label>
+            <label>
+              <input
+                type="radio"
+                name="radio"
+                id="like"
+                [value]="reactType.LIKE"
+                (change)="onReact($event, post)"
+                [checked]="post.checked == reactType.LIKE"
+              />
+              <img src="assets/like.png" alt="option2" />
+            </label>
+
+            <label for="dislike" [innerText]="post.dislikeCount">0</label>
+            <label>
+              <input
+                type="radio"
+                name="radio"
+                id="dislike"
+                [value]="reactType.DISLIKE"
+                (change)="onReact($event, post)"
+                [checked]="post.checked == reactType.DISLIKE"
+              />
+              <img src="assets/dislike.png" alt="option3" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <textarea
+        class="form-control mt-3"
+        rows="2"
+        [(ngModel)]="postText"
+      ></textarea>
+      <button class="btn btn-primary mt-3" (click)="submit()">Post</button>
+
+      <h4 class="mt-3">Comments:</h4>
+      <div class="card" *ngFor="let comment of comments; let i = index">
+        <div class="card-body">
+          <h6 class="card-subtitle text-body-secondary">
+            {{ comment.username }}
+          </h6>
+          <p class="card-text">
+            {{ comment.text }}
+          </p>
+          <div class="d-flex justify-content-end">
+            <label [for]="'h' + i" [innerText]="comment.heartCount">0</label>
+            <label>
+              <input
+                type="radio"
+                [name]="i + 1"
+                [id]="'h' + i"
+                [value]="reactType.HEART"
+                (change)="onCommentReact($event, comment)"
+                [checked]="comment.checked == reactType.HEART"
+              />
+              <img src="assets/heart3.png" alt="option1" />
+            </label>
+            <label [for]="'l' + i" [innerText]="comment.likeCount">0</label>
+            <label>
+              <input
+                type="radio"
+                [name]="i + 1"
+                [id]="'l' + i"
+                [value]="reactType.LIKE"
+                (change)="onCommentReact($event, comment)"
+                [checked]="comment.checked == reactType.LIKE"
+              />
+              <img src="assets/like.png" alt="option2" />
+            </label>
+            <label [for]="'d' + i" [innerText]="comment.dislikeCount">0</label>
+            <label>
+              <input
+                type="radio"
+                [name]="i + 1"
+                [id]="'d' + i"
+                [value]="reactType.DISLIKE"
+                (change)="onCommentReact($event, comment)"
+                [checked]="comment.checked == reactType.DISLIKE"
+              />
+              <img src="assets/dislike.png" alt="option3" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
